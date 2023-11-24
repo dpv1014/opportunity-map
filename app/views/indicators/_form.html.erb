@@ -43,7 +43,7 @@
 
     <div class="col-xl-6">
       <div class="form-group mb-3">
-        <%= form.label :base_linea, class: "form-label" %>
+        <%= form.label :base_linea, "Linea base", class: "form-label" %>
         <%= form.number_field :base_linea, required: true, class: "form-control", disabled: disabled %>
       </div>
     </div>
@@ -56,7 +56,7 @@
           <%= form.text_field :progress_percentage, class: "form-control", disabled: disabled %>
         </div>
       </div>
-      <% end %>>
+      <% end %>
 
     <% unless disabled %>
       <div class="form-group mb-3">
