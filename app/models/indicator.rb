@@ -5,9 +5,9 @@ class Indicator < ApplicationRecord
 
   after_save :calc_progress
 
-  def self.dashboard_url
+  def self.dashboard_url(dashboard = 1)
     payload = {
-      :resource => {:dashboard => 1},
+      :resource => {:dashboard => dashboard},
       :params => { },
       :exp => Time.now.to_i + (60 * 10) # 10 minute expiration
     }
