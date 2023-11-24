@@ -18,5 +18,5 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "dashboard#index"
-  get "dashboard_destinations", to: "dashboard#dashboard_destinations"
+  get "dashboard_destinations", to: "dashboard#dashboard_destinations", as: :dashboard_destinations
 end
