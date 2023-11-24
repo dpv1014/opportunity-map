@@ -30,7 +30,7 @@ class Indicator < ApplicationRecord
   end
 
   def calc_incremental
-    return 0 if indicator_trackings.blank?
+    return 0 if indicator_trackings.size.zero?
 
     calc_base_line = base_linea.to_f
     cal_target_value = target_value.to_f
@@ -46,7 +46,7 @@ class Indicator < ApplicationRecord
   end
 
   def calc_reduction
-    return 0 if indicator_trackings.blank?
+    return 0 if indicator_trackings.size.zero?
 
     calc_base_line = base_linea.to_f
     cal_target_value = target_value.to_f

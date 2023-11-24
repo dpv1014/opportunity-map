@@ -5,6 +5,12 @@
     <!-- BEGIN menu -->
     <div class="menu">
       <div class="menu-header">Menú</div>
+      <div class="menu-item <%= "active" if validate_path(request.path, ["dashboard"]) %>">
+        <a href="<%= root_path %>" class="menu-link">
+          <span class="menu-icon"><i class="fa fa-dashboard"></i></span>
+          <span class="menu-text">Tablero de reportes</span>
+        </a>
+      </div>
       <% if can? :index, User %>
         <div class="menu-item <%= "active" if validate_path(request.path, ["users"]) %>">
           <a href="<%= users_path %>" class="menu-link">
