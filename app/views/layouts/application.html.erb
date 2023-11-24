@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mapa de oportunidades - Gobernación del Magdalena</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "vendor.min", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "app.min", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "custom", "data-turbo-track": "reload" %>
+
+    <%= stylesheet_link_tag "/assets/plugins/datatables.net-bs5/css/dataTables.bootstrap5.min", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "/assets/plugins/datatables.net-buttons-bs5/css/buttons.bootstrap5.min", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "/assets/plugins/datatables.net-responsive-bs5/css/responsive.bootstrap5.min", "data-turbo-track": "reload" %>
+
+  </head>
+
+  <body>
+    <div id="app" class="app">
+      <%= render "shared/header" %>
+      <%= render "shared/sidebar" %>
+      <div id="content" class="app-content">
+        <%= render "shared/breadcrumbs" %>
+        <%= render partial: 'shared/notices', locals: { flash: flash } %>
+        <div class="row bg-white">
+          <div class="col-12 p-3">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+      <!-- END #content -->
+      <!-- BEGIN btn-scroll-top -->
+      <a href="#" data-click="scroll-top" class="btn-scroll-top fade"><i class="fa fa-arrow-up"></i></a>
+      <!-- END btn-scroll-top -->
+      <%= javascript_include_tag "vendor.min", "data-turbolinks-track": "reload" %>
+      <%= javascript_include_tag "app.min", "data-turbolinks-track": "reload" %>
+      <%= javascript_include_tag "application", "data-turbolinks-track": "reload" %>
+      <%= javascript_include_tag "custom", "data-turbolinks-track": "reload" %>
+      <%= javascript_include_tag "/assets/plugins/datatables.net/js/jquery.dataTables.min.js", "data-turbolinks-track": "reload" %>
+      <%= javascript_include_tag "/assets/plugins/datatables.net-bs5/js/dataTables.bootstrap5.min.js", "data-turbolinks-track": "reload" %>
+      <%= javascript_include_tag "/assets/plugins/datatables.net-buttons/js/dataTables.buttons.min.js", "data-turbolinks-track": "reload" %>
+      <%= javascript_include_tag "/assets/plugins/datatables.net-buttons/js/buttons.colVis.min.js", "data-turbolinks-track": "reload" %>
+      <%= javascript_include_tag "/assets/plugins/datatables.net-buttons/js/buttons.flash.min.js", "data-turbolinks-track": "reload" %>
+      <%= javascript_include_tag "/assets/plugins/datatables.net-buttons/js/buttons.html5.min.js", "data-turbolinks-track": "reload" %>
+      <%= javascript_include_tag "/assets/plugins/datatables.net-buttons/js/buttons.print.min.js", "data-turbolinks-track": "reload" %>
+      <%= javascript_include_tag "/assets/plugins/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js", "data-turbolinks-track": "reload" %>
+      <%= javascript_include_tag "/assets/plugins/datatables.net-responsive/js/dataTables.responsive.min.js", "data-turbolinks-track": "reload" %>
+      <%= javascript_include_tag "/assets/plugins/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js", "data-turbolinks-track": "reload" %>
+
+      <script>
+        $(document).ready(function() {
+          handleRenderTableData();
+        });
+      </script>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,73 @@
+<%= form_with(model: indicator) do |form| %>
+  <% if indicator.errors.any? %>
+    <div class="alert alert-danger">
+      <h2><%= pluralize(indicator.errors.count, "error") %> no permitió que se guardaran los cambios:</h2>
+
+      <ul>
+        <% indicator.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="row">
+    <div class="col-xl-6">
+      <div class="form-group mb-3">
+        <%= form.label :name, "Nombre", class: "form-label" %>
+        <%= form.text_field :name, required: true, class: "form-control", disabled: disabled %>
+      </div>
+    </div>
+
+    <div class="col-xl-6">
+      <div class="form-group mb-3">
+        <%= form.label :description, "Descripción", class: "form-label" %>
+        <%= form.text_area :description, class: "form-control", disabled: disabled %>
+      </div>
+    </div>
+
+    <div class="col-xl-6">
+      <div class="form-group mb-3">
+        <%= form.label :target_value, "Valor objetivo", class: "form-label" %>
+        <%= form.number_field :target_value, required: true, class: "form-control", disabled: disabled %>
+      </div>
+    </div>
+
+    <div class="col-xl-6">
+      <div class="form-group mb-3">
+        <%= form.label :indicator_type,"Tipo de indicador", class: "form-label" %>
+        <%= form.select :indicator_type, Indicator.indicator_types.map{|k,v| [Indicator.translate_indicator_type_enum[k], k]},
+                        { include_blank: false },
+                        { class: "form-control", disabled: disabled } %>
+      </div>
+    </div>
+
+    <div class="col-xl-6">
+      <div class="form-group mb-3">
+        <%= form.label :base_linea, class: "form-label" %>
+        <%= form.number_field :base_linea, required: true, class: "form-control", disabled: disabled %>
+      </div>
+    </div>
+
+    <% if disabled %>
+      <div class="col-xl-6">
+        <div class="form-group mb-3">
+          <% indicator.progress_percentage =  indicator.progress_percentage.to_f.round(2) %>
+          <%= form.label :progress_percentage, "Porcentaje de avance", class: "form-label" %>
+          <%= form.text_field :progress_percentage, class: "form-control", disabled: disabled %>
+        </div>
+      </div>
+      <% end %>>
+
+    <% unless disabled %>
+      <div class="form-group mb-3">
+        <%= form.submit "Enviar", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<style>
+  *:disabled {
+    border: 0;
+  }
+</style>

@@ -1,0 +1,19 @@
+<div class="d-flex justify-content-between">
+  <h3>Editar Indicador</h3>
+  <div>
+    <% if can? :index, Indicator %>
+      <%= link_to indicators_path, class: "btn btn-primary" do %>
+        <i class="fas fa-arrow-left"></i> Regresar
+      <% end %>
+    <% end %>
+    <% if can? :read, @indicator %>
+      <%= link_to @indicator, class: "btn btn-info" do %>
+        <i class="fas fa-eye"></i> Ver
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<div class="mt-4">
+  <%= render "form", indicator: @indicator, disabled: false %>
+</div>

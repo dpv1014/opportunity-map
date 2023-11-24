@@ -1,0 +1,31 @@
+<!-- BEGIN #sidebar -->
+<div id="sidebar" class="app-sidebar">
+  <!-- BEGIN scrollbar -->
+  <div class="app-sidebar-content" data-scrollbar="true" data-height="100%">
+    <!-- BEGIN menu -->
+    <div class="menu">
+      <div class="menu-header">Menú</div>
+      <% if can? :index, User %>
+        <div class="menu-item <%= "active" if validate_path(request.path, ["users"]) %>">
+          <a href="<%= users_path %>" class="menu-link">
+            <span class="menu-icon"><i class="fa fa-user"></i></span>
+            <span class="menu-text">Usuarios</span>
+          </a>
+        </div>
+      <% end %>
+      <% if can? :index, Indicator %>
+        <div class="menu-item <%= "active" if validate_path(request.path, ["indicators", "indicator_trackings"]) %>">
+          <a href="<%= indicators_path %>" class="menu-link">
+            <span class="menu-icon"><i class="fa fa-bars-progress"></i></span>
+            <span class="menu-text">Indicadores</span>
+          </a>
+        </div>
+      <% end %>
+    </div>
+    <!-- END menu -->
+  </div>
+  <!-- BEGIN mobile-sidebar-backdrop -->
+  <button class="app-sidebar-mobile-backdrop" data-dismiss="sidebar-mobile"></button>
+  <!-- END mobile-sidebar-backdrop -->
+</div>
+<!-- END #sidebar -->

@@ -1,0 +1,57 @@
+<%= form_with(model: user) do |form| %>
+  <% if user.errors.any? %>
+    <div class="alert alert-danger">
+      <h2><%= pluralize(user.errors.count, "error") %> no permitió que se guardaran los cambios:</h2>
+
+      <ul>
+        <% user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="row">
+
+    <% if current_user.id != user.id %>
+      <div class="col-xl-6">
+        <div class="form-group mb-3">
+          <%= form.label :role, "Rol", class: "form-label" %>
+          <%= form.select :role, current_user.roles_can_create.map { |role| [User.translate_role_enum[role], role] }, {}, { class: "form-control", disabled: disabled } %>
+        </div>
+      </div>
+    <% end %>
+    
+    <div class="col-xl-6">
+      <div class="form-group mb-3">
+        <%= form.label :email, "Correo electronico", class: "form-label" %>
+        <%= form.text_field :email,  class: "form-control", required: true, disabled: disabled %>
+      </div>
+    </div>
+
+    <div class="col-xl-6">
+      <div class="form-group mb-3">
+        <%= form.label :name, "Nombre", class: "form-label" %>
+        <%= form.text_field :name, class: "form-control", required: true, disabled: disabled %>
+      </div>
+    </div>
+
+    <% unless disabled %>
+      <div class="col-xl-6">
+        <div class="form-group mb-3">
+          <%= form.label :password, "Contraseña (Dejar en blanco si no se desea actualizar)", class: "form-label" %>
+          <%= form.password_field :password, class: "form-control", required: true, disabled: disabled %>
+        </div>
+      </div>
+      
+      <div class="form-group mb-3">
+        <%= form.submit "Enviar", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<style>
+  *:disabled {
+    border: 0;
+  }
+</style>

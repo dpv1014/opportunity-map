@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-between">
+  <h3><%= human_name.pluralize %></h3>
+  <%% if can? :new, <%= class_name %> %>
+    <%%= link_to <%= new_helper(type: :path) %>, class: "btn btn-primary" do %>
+      <i class="fa fa-plus"></i> Crear <%= human_name %>
+    <%% end %>
+  <%% end %>
+</div>
+
+
+<div id="datatable" class="mb-5 pt-3">
+  <div class="card">
+    <div class="card-body">
+      <table id="datatableDefault" class="table text-nowrap w-100">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <% attributes.reject(&:password_digest?).each do |attribute| -%>
+<th><%= attribute.column_name.camelize %></th>
+            <% end -%>
+<th>Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
+            <tr>
+              <td><%%= <%= singular_name %>.id %></td>
+              <% attributes.reject(&:password_digest?).each do |attribute| -%>
+<td><%%= <%= singular_name %>.<%= attribute.column_name %> %></td>
+              <% end -%>
+<td>
+                <%% if can? :edit, <%= singular_table_name %> %>
+                  <%%= link_to <%= model_resource_name(singular_table_name) %>, class: "btn btn-info btn-sm" do %>
+                    <i class="fa fa-search"></i>
+                  <%% end %>
+                <%% end %>
+                <%% if can? :edit, <%= singular_table_name %> %>
+                  <%%= link_to edit_<%= model_resource_name(singular_table_name) %>_path(<%= singular_table_name %>), class: "btn btn-warning btn-sm" do %>
+                    <i class="fa fa-pencil"></i>
+                  <%% end %>
+                <%% end %>
+                <%% if can? :destroy, <%= singular_table_name %> %>
+                  <%%= link_to <%= model_resource_name(singular_table_name) %>, method: :delete, data: { confirm: 'Esta seguro?' }, class: "btn btn-danger btn-sm" do %>
+                    <i class="fa fa-trash"></i>
+                  <%% end %>
+                <%% end %>
+              </td>
+            </tr>
+          <%% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

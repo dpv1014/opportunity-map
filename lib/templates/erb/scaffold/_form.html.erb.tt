@@ -1,0 +1,50 @@
+<%%= form_with(model: <%= model_resource_name %>) do |form| %>
+  <%% if <%= singular_table_name %>.errors.any? %>
+    <div class="alert alert-danger">
+      <h2><%%= pluralize(<%= singular_table_name %>.errors.count, "error") %> no permitió que se guardaran los cambios:</h2>
+
+      <ul>
+        <%% <%= singular_table_name %>.errors.each do |error| %>
+          <li><%%= error.full_message %></li>
+        <%% end %>
+      </ul>
+    </div>
+  <%% end %>
+  <div class="row">
+  <% attributes.each do |attribute| -%>
+  <div class="col-xl-6">
+      <div class="form-group mb-3">
+  <% if attribute.password_digest? -%>
+      <%%= form.label :password, class: "form-label" %>
+        <%%= form.password_field :password, class: "form-control", disabled: disabled %>
+    </div>
+    </div>
+
+  <div class="col-xl-6">
+      <div class="form-group mb-3">
+      <%%= form.label :password_confirmation, class: "form-label" %>
+        <%%= form.password_field :password_confirmation, class: "form-control", disabled: disabled %>
+  <% elsif attribute.attachments? -%>
+      <%%= form.label :<%= attribute.column_name %>, class: "form-label" %>
+        <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %>, multiple: true, class: "form-control", disabled: disabled %>
+  <% else -%>
+      <%%= form.label :<%= attribute.column_name %>, class: "form-label" %>
+        <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %>, class: "form-control", disabled: disabled %>
+  <% end -%>
+    </div>
+    </div>
+
+  <% end -%>
+  <%% unless disabled %>
+      <div class="form-group mb-3">
+        <%%= form.submit "Enviar", class: "btn btn-primary" %>
+      </div>
+    <%% end %>
+  </div>
+<%% end %>
+
+<style>
+  *:disabled {
+    border: 0;
+  }
+</style>

@@ -1,0 +1,50 @@
+<!-- BEGIN #header -->
+<div id="header" class="app-header">
+  <!-- BEGIN mobile-toggler -->
+  <div class="mobile-toggler">
+    <button type="button" class="menu-toggler" data-toggle="sidebar-mobile">
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+  </div>
+  <!-- END mobile-toggler -->
+  
+  <!-- BEGIN brand -->
+  <div class="brand">
+    <div class="desktop-toggler">
+      <button type="button" class="menu-toggler" data-toggle="sidebar-minify">
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
+    
+    <a href="/" class="brand-logo">
+      <svg xmlns="http://www.w3.org/2000/svg" width="100" height="50">
+        <rect x="0" y="0" width="100" height="50" fill="#fff"/>
+        <text x="50" y="30" text-anchor="middle" fill="#000" font-size="8">Mapa de oportunidades</text>
+      </svg>
+    </a>
+  </div>
+  <!-- END brand -->
+  
+  <!-- BEGIN menu -->
+  <div class="menu" >
+    <form style="visibility: hidden" class="menu-search" method="POST" name="header_search_form">
+      <div class="menu-search-icon"><i class="fa fa-search"></i></div>
+      <div class="menu-search-input">
+        <input type="text" class="form-control" placeholder="Search menu...">
+      </div>
+    </form>
+    <div class="menu-item dropdown">
+      <a href="#" data-bs-toggle="dropdown" data-display="static" class="menu-link">
+        <div class="menu-text"><%= current_user&.email %> (<%= User.translate_role_enum[current_user.role] %>)</div>
+      </a>
+      <div class="dropdown-menu dropdown-menu-end me-lg-3">
+        <a class="dropdown-item d-flex align-items-center" href="<%= profile_users_path %>">Mi perfil <i class="fa fa-pencil fa-fw ms-auto text-body text-opacity-50"></i></a>
+        <a class="dropdown-item d-flex align-items-center" href="<%= destroy_user_session_path %>" data-method="delete">Cerrar sesión <i class="fa fa-toggle-off fa-fw ms-auto text-body text-opacity-50"></i></a>
+      </div>
+    </div>
+  </div>
+  <!-- END menu -->
+</div>
+<!-- END #header -->

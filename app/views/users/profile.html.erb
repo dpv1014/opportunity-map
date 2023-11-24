@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-between">
+  <h3>Mi perfil - Editar</h3>
+</div>
+
+<div class="mt-4">
+  <%= form_with(model: @user, url: update_profile_users_path) do |form| %>
+    <% if @user.errors.any? %>
+      <div class="alert alert-danger">
+        <h2><%= pluralize(@user.errors.count, "error") %> no permitió que se guardaran los cambios:</h2>
+
+        <ul>
+          <% @user.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="row">
+      <div class="col-xl-6">
+        <div class="form-group mb-3">
+          <%= form.label :email, "Correo electronico", class: "form-label" %>
+          <%= form.text_field :email, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="col-xl-6">
+        <div class="form-group mb-3">
+          <%= form.label :name, "Nombre", class: "form-label" %>
+          <%= form.text_field :name, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="col-xl-6">
+        <div class="form-group mb-3">
+          <%= form.label :password, "Contraseña (Dejar en blanco si no se desea actualizar)", class: "form-label" %>
+          <%= form.password_field :password, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group mb-3">
+        <%= form.submit "Enviar", class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+
+  <style>
+      *:disabled {
+          border: 0;
+      }
+  </style>
+
+</div>

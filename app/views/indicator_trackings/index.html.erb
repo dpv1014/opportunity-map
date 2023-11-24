@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-between">
+  <h3>Seguimiento de indicador: <%= @indicator.name %></h3>
+  <% if can? :new, IndicatorTracking %>
+    <%= link_to new_indicator_indicator_tracking_path, class: "btn btn-primary" do %>
+      <i class="fa fa-plus"></i> Agregar seguimiendo a indicador
+    <% end %>
+  <% end %>
+</div>
+
+
+<div id="datatable" class="mb-5 pt-3">
+  <div class="card">
+    <div class="card-body">
+      <table id="datatableDefault" class="table text-nowrap w-100">
+        <thead>
+          <tr>
+            <th>Fecha de reporte</th>
+            <th>Valor</th>
+            <th>Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @indicator_trackings.each do |indicator_tracking| %>
+            <tr>
+              <td><%= indicator_tracking.report_date %></td>
+              <td><%= indicator_tracking.value %></td>
+              <td>
+                <% if can? :edit, indicator_tracking %>
+                  <%= link_to indicator_indicator_tracking_path(@indicator, indicator_tracking), class: "btn btn-info btn-sm" do %>
+                    <i class="fa fa-search"></i>
+                  <% end %>
+                <% end %>
+                <% if can? :edit, indicator_tracking %>
+                  <%= link_to edit_indicator_indicator_tracking_path(@indicator, indicator_tracking), class: "btn btn-warning btn-sm" do %>
+                    <i class="fa fa-pencil"></i>
+                  <% end %>
+                <% end %>
+                <% if can? :destroy, indicator_tracking %>
+                  <%= link_to indicator_indicator_tracking_path(@indicator, indicator_tracking), method: :delete, data: { confirm: 'Esta seguro?' }, class: "btn btn-danger btn-sm" do %>
+                    <i class="fa fa-trash"></i>
+                  <% end %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

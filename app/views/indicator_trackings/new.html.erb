@@ -1,0 +1,14 @@
+<div class="d-flex justify-content-between">
+  <h3>Registrar nuevo seguimiendo a indicador: <%=@indicator.name %></h3>
+  <div>
+    <% if can? :index, IndicatorTracking %>
+      <%= link_to indicator_indicator_trackings_path(@indicator), class: "btn btn-primary" do %>
+        <i class="fas fa-arrow-left"></i> Regresar
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<div class="mt-4">
+  <%= render "form", indicator_tracking: @indicator_tracking, disabled: false %>
+</div>

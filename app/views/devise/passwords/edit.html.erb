@@ -1,0 +1,29 @@
+<h1 class="text-center">Cambia tú contraseña</h1>
+
+<div class="text-muted text-center mb-4">
+  Ingresa y confirma tú nueva contraseña para hacer la actualización de tus datos de acceso.
+</div>
+
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+  <%= f.hidden_field :reset_password_token %>
+
+  <div class="mb-3">
+    <%= f.label :password, "Contraseña", class: "form-label" %><br />
+    <% if @minimum_password_length %>
+      <p><em>(<%= @minimum_password_length %> Caracteres minimo)</em></p>
+    <% end %>
+    <%= f.password_field :password, autocomplete: "new-password", class: "form-control form-control-lg fs-15px", placeholder: "Ingrese su nueva contraseña"%>
+  </div>
+
+  <div class="field">
+    <p><%= f.label :password_confirmation, "Confirme nueva contraseña",  class: "form-label" %></p>
+    <p><%= f.password_field :password_confirmation, autocomplete: "new-password",autocomplete: "new-password", class: "form-control form-control-lg fs-15px", placeholder: "Confirme su nueva contraseña" %></p>
+  </div>
+
+  <div class="actions">
+    <button type="submit" class="btn btn-theme btn-lg d-block w-100 fw-500 mb-3">Cambiar contraseña</button>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>

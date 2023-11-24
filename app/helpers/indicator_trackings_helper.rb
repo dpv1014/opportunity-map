@@ -1,0 +1,2 @@
+module IndicatorTrackingsHelper
+end

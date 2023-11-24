@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-between">
+  <h3>Usuarios</h3>
+  <% if can? :new, User %>
+    <%= link_to new_user_path, class: "btn btn-primary" do %>
+      <i class="fa fa-plus"></i> Crear Usuario
+    <% end %>
+  <% end %>
+</div>
+
+
+<div id="datatable" class="mb-5 pt-3">
+  <div class="card">
+    <div class="card-body">
+      <table id="datatableDefault" class="table text-nowrap w-100">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Email</th>
+            <th>Rol</th>
+            <th>Nombre</th>
+            <th>Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= user.id %></td>
+              <td><%= user.email %></td>
+              <td><%= User.translate_role_enum[user.role] %></td>
+              <td><%= user.name %></td>
+              <td>
+                <% if can? :edit, user %>
+                  <%= link_to user, class: "btn btn-info btn-sm" do %>
+                    <i class="fa fa-search"></i>
+                  <% end %>
+                <% end %>
+                <% if can? :edit, user %>
+                  <%= link_to edit_user_path(user), class: "btn btn-warning btn-sm" do %>
+                    <i class="fa fa-pencil"></i>
+                  <% end %>
+                <% end %>
+                <% if can?(:destroy, user) && current_user.id != user.id %>
+                  <%= link_to user, method: :delete, data: { confirm: 'Esta seguro?' }, class: "btn btn-danger btn-sm" do %>
+                    <i class="fa fa-trash"></i>
+                  <% end %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

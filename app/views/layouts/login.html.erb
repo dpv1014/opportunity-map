@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mapa de oportunidades - Login</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "vendor.min", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "app.min", "data-turbo-track": "reload" %>
+  </head>
+
+  <body>
+    <!-- BEGIN #app -->
+    <div id="app" class="app app-full-height app-without-header">
+    <%= render "shared/notices" %>
+      <!-- BEGIN login -->
+      <div class="login">
+        <!-- BEGIN login-content -->
+        <div class="login-content">
+          <%= yield %>
+        </div>
+        <!-- END login-content -->
+      </div>
+      <!-- END login -->
+      
+      <!-- BEGIN btn-scroll-top -->
+      <a href="#" data-click="scroll-top" class="btn-scroll-top fade"><i class="fa fa-arrow-up"></i></a>
+      <!-- END btn-scroll-top -->
+      <%= javascript_include_tag 'vendor.min', 'data-turbolinks-track': 'reload' %>
+      <%= javascript_include_tag 'app.min', 'data-turbolinks-track': 'reload' %>
+    </div>
+    <!-- END #app -->
+  </body>
+</html>

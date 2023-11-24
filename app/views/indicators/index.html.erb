@@ -1,0 +1,58 @@
+<div class="d-flex justify-content-between">
+  <h3>Indicadores</h3>
+  <% if can? :new, Indicator %>
+    <%= link_to new_indicator_path, class: "btn btn-primary" do %>
+      <i class="fa fa-plus"></i> Crear Indicador
+    <% end %>
+  <% end %>
+</div>
+
+
+<div id="datatable" class="mb-5 pt-3">
+  <div class="card">
+    <div class="card-body">
+      <table id="datatableDefault" class="table text-nowrap w-100">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Tipo indicador</th>
+            <th>Linea Base</th>
+            <th>Valor Objetivo</th>
+            <th>Porcentaje de avance</th>
+            <th>Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @indicators.each do |indicator| %>
+            <tr>
+              <td><%= indicator.name %></td>
+              <td><%= indicator.description %></td>
+              <td><%= Indicator.translate_indicator_type_enum[indicator.indicator_type] %></td>
+              <td><%= indicator.base_linea %></td>
+              <td><%= indicator.target_value %></td>
+              <td><%= indicator.progress_percentage.to_f.round(2) %>%</td>
+              <td>
+                <% if can? :edit, indicator %>
+                  <%= link_to indicator, class: "btn btn-info btn-sm" do %>
+                    <i class="fa fa-search"></i>
+                  <% end %>
+                <% end %>
+                <% if can? :edit, indicator %>
+                  <%= link_to edit_indicator_path(indicator), class: "btn btn-warning btn-sm" do %>
+                    <i class="fa fa-pencil"></i>
+                  <% end %>
+                <% end %>
+                <% if can? :destroy, indicator %>
+                  <%= link_to indicator, method: :delete, data: { confirm: 'Esta seguro?' }, class: "btn btn-danger btn-sm" do %>
+                    <i class="fa fa-trash"></i>
+                  <% end %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

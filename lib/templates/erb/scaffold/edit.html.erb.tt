@@ -1,0 +1,19 @@
+<div class="d-flex justify-content-between">
+  <h3>Editar <%= human_name %></h3>
+  <div>
+    <%% if can? :index, <%= singular_table_name.camelize %> %>
+      <%%= link_to <%= index_helper(type: :path) %>, class: "btn btn-primary" do %>
+        <i class="fas fa-arrow-left"></i> Regresar
+      <%% end %>
+    <%% end %>
+    <%% if can? :read, @<%= singular_table_name %> %>
+      <%%= link_to <%= model_resource_name(prefix: "@") %>, class: "btn btn-info" do %>
+        <i class="fas fa-eye"></i> Ver
+      <%% end %>
+    <%% end %>
+  </div>
+</div>
+
+<div class="mt-4">
+  <%%= render "form", <%= singular_table_name %>: <%= model_resource_name(prefix: "@") %>, disabled: false %>
+</div>

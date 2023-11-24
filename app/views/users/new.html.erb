@@ -1,0 +1,14 @@
+<div class="d-flex justify-content-between">
+  <h3>Crear Usuario</h3>
+  <div>
+    <% if can? :index, User %>
+      <%= link_to users_path, class: "btn btn-primary" do %>
+        <i class="fas fa-arrow-left"></i> Regresar
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<div class="mt-4">
+  <%= render "form", user: @user, disabled: false %>
+</div>

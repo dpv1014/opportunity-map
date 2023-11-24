@@ -1,0 +1,43 @@
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <h1 class="text-center">Iniciar sesión</h1>
+  <div class="text-muted text-center mb-4">
+    Verifica tu identidad para continuar con el proceso.
+  </div>
+  <div class="mb-3">
+    <%= f.label :email, "Correo electrónico", class: "form-label" %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control form-control-lg fs-15px", placeholder:"correo@dominio.com" %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :password, "Contraseña", class: "form-label" %><br />
+    <div style="position: relative">
+      <%= f.password_field :password, autocomplete: "current-password", class: "form-control form-control-lg fs-15px", placeholder: "Ingrese su contraseña", id: 'password-field'%>
+      <span style="position: absolute; right: 5px;top:15px;" toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+    </div>
+  </div>
+  <div class="mb-3">
+    <% if devise_mapping.rememberable? %>
+      <div class="form-check">
+        <%= f.check_box :remember_me, class: "form-check-input" %>
+        <%= f.label :remember_me, "Recordarme?", class: "form-check-label fw-500" %>
+      </div>
+    <% end %>
+  </div>
+  <div class="mb-3">
+    <div class="form-label">
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-theme btn-lg d-block w-100 fw-500 mb-3">Ingresar</button>
+<% end %>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const togglePassword = document.querySelector('.toggle-password');
+        const passwordField = document.getElementById('password-field');
+
+        togglePassword.addEventListener('click', function () {
+            const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordField.setAttribute('type', type);
+        });
+    });
+</script>

@@ -1,0 +1,24 @@
+<div class="d-flex justify-content-between">
+  <h3>Ver <%= human_name %></h3>
+  <div>
+    <%% if can? :index, <%= singular_table_name.camelize %> %>
+      <%%= link_to <%= index_helper(type: :path) %>, class: "btn btn-primary" do %>
+        <i class="fas fa-arrow-left"></i> Regresar
+      <%% end %>
+    <%% end %>
+    <%% if can? :edit, @<%= singular_table_name %> %>
+      <%%= link_to edit_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: "btn btn-warning" do %>
+        <i class="fas fa-pencil"></i> Editar
+      <%% end %>
+    <%% end %>
+    <%% if can? :destroy, @<%= singular_table_name %> %>
+      <%%= link_to @<%= singular_table_name %>, method: :delete, data: { confirm: 'Esta seguro?' }, class: "btn btn-danger" do %>
+        <i class="fas fa-trash"></i> Eliminar
+      <%% end %>
+    <%% end %>
+  </div>
+</div>
+
+<div class="mt-4">
+  <%%= render "form", <%= singular_table_name %>: <%= model_resource_name(prefix: "@") %>, disabled: true %>
+</div>

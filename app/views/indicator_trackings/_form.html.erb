@@ -1,0 +1,39 @@
+<%= form_with(model: indicator_tracking, url: indicator_tracking.new_record? ? indicator_indicator_trackings_path(@indicator) : indicator_indicator_tracking_path(@indicator, indicator_tracking)) do |form|%>  <% if indicator_tracking.errors.any? %>
+    <div class="alert alert-danger">
+      <h2><%= pluralize(indicator_tracking.errors.count, "error") %> no permitió que se guardaran los cambios:</h2>
+
+      <ul>
+        <% indicator_tracking.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="row">
+    <div class="col-xl-6">
+      <div class="form-group mb-3">
+        <%= form.label :report_date, "Fecha reporte", class: "form-label" %>
+        <%= form.date_field :report_date, class: "form-control", disabled: disabled %>
+      </div>
+    </div>
+
+    <div class="col-xl-6">
+      <div class="form-group mb-3">
+        <%= form.label :value, "Valor", class: "form-label" %>
+        <%= form.number_field :value, class: "form-control", disabled: disabled %>
+      </div>
+    </div>
+
+    <% unless disabled %>
+      <div class="form-group mb-3">
+        <%= form.submit "Enviar", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<style>
+  *:disabled {
+    border: 0;
+  }
+</style>
