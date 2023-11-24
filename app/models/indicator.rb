@@ -5,6 +5,17 @@ class Indicator < ApplicationRecord
 
   after_save :calc_progress
 
+  def self.dashboard_url
+    payload = {
+      :resource => {:dashboard => 1},
+      :params => { },
+      :exp => Time.now.to_i + (60 * 10) # 10 minute expiration
+    }
+    token = JWT.encode payload, ENV["METABASE_SECRET_KEY"]
+
+    ENV["METABASE_SITE_URL"] + "/embed/dashboard/" + token + "#bordered=true&titled=true"
+  end
+
   def self.translate_indicator_type_enum
     {"incremental"=> "Incremental", "reduction"=>"Reducción"}
   end
