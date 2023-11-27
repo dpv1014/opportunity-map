@@ -5,7 +5,7 @@
     <!-- BEGIN menu -->
     <div class="menu">
       <div class="menu-header">Menú</div>
-      <div class="menu-item <%= "active" if validate_path(request.path, ["dashboard"]) %>">
+      <div class="menu-item <%= "active" if (root_path && !validate_path(request.path, ["dashboard_destinations", "users","indicators", "indicator_trackings" ])) %>">
         <a href="<%= root_path %>" class="menu-link">
           <span class="menu-icon"><i class="fa fa-dashboard"></i></span>
           <span class="menu-text">Tablero de reportes de indicadores</span>
